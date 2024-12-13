@@ -1,0 +1,6 @@
+@CSE.Cliente.API_HostAddress = http://localhost:5230
+
+GET {{CSE.Cliente.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

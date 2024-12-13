@@ -1,0 +1,6 @@
+@CSE.Pagamento.API_HostAddress = http://localhost:5014
+
+GET {{CSE.Pagamento.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
