@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using static CSE.Identidade.API.Models.UserViewModels;
 
 namespace CSE.Identidade.API.Controllers;
 
+[ApiController]
 [Route("api/identidade")]
 public class AuthController(SignInManager<IdentityUser> signInManager,
                       UserManager<IdentityUser> userManager

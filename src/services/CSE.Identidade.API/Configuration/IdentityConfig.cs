@@ -1,4 +1,5 @@
 ﻿using CSE.Identidade.API.Data;
+using CSE.Identidade.API.Extension;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -14,14 +15,13 @@ public static class IdentityConfig
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        /*
         // Pegando o Token e gerando a chave encodada
-        var JwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
-        builder.Services.Configure<JwtSettings>(JwtSettingsSection);
+        var JwtSettingsSection = builder.Configuration.GetSection("AppSettings");
+        builder.Services.Configure<AppSettings>(JwtSettingsSection);
 
-        var jwtSettings = JwtSettingsSection.Get<JwtSettings>();
-        var key = Encoding.ASCII.GetBytes(jwtSettings.Segredo);
-
+        var jwtSettings = JwtSettingsSection.Get<AppSettings>();
+        var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
+        
         builder.Services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -35,11 +35,10 @@ public static class IdentityConfig
                 IssuerSigningKey = new SymmetricSecurityKey(key),
                 ValidateIssuer = true,
                 ValidateAudience = true,
-                ValidAudience = jwtSettings.Audiencia,
+                ValidAudience = jwtSettings.ValidoEm,
                 ValidIssuer = jwtSettings.Emissor
             };
         });
-        */
 
         return builder;
     }
