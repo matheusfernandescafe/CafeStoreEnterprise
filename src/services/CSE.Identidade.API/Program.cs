@@ -6,7 +6,8 @@ builder
     .AddApiConfig()
     .AddCorsConfig()
     .AddSwaggerConfig()
-    .AddDbContextConfig();
+    .AddDbContextConfig()
+    .AddIdentityConfig();
 
 var app = builder.Build();
 
