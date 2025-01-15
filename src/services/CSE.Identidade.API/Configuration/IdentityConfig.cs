@@ -13,9 +13,9 @@ public static class IdentityConfig
     {
         builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
+                .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        // Pegando o Token e gerando a chave encodada
         var JwtSettingsSection = builder.Configuration.GetSection("AppSettings");
         builder.Services.Configure<AppSettings>(JwtSettingsSection);
 
