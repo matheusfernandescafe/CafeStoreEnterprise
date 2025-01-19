@@ -6,6 +6,7 @@ builder.AddEnvironmentConfig();
 
 builder.Services.AddIdentityConfiguration();
 builder.Services.AddMvcConfiguration(builder.Configuration);
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 
