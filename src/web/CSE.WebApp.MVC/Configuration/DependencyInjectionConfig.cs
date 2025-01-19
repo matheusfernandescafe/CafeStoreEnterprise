@@ -1,4 +1,5 @@
-﻿using CSE.WebApp.MVC.Services;
+﻿using CSE.WebApp.MVC.Extensions;
+using CSE.WebApp.MVC.Services;
 
 namespace CSE.WebApp.MVC.Configuration;
 
@@ -9,5 +10,7 @@ public static class DependencyInjectionConfig
         services.AddHttpClient<IAutenticacaoService, AutenticacaoService>();
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+        services.AddScoped<IUser, AspNetUser>();
     }
 }
