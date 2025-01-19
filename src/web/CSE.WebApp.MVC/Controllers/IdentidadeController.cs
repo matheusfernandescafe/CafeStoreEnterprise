@@ -1,6 +1,10 @@
 ﻿using CSE.WebApp.MVC.Models;
 using CSE.WebApp.MVC.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace CSE.WebApp.MVC.Controllers;
 
@@ -13,7 +17,7 @@ public class IdentidadeController(IAutenticacaoService autenticacaoService) : Co
     {
         return View();
     }
-    
+
     [HttpPost("nova-conta")]
     public async Task<IActionResult> Registro(UsuarioRegistro usuarioRegistro)
     {
@@ -21,15 +25,17 @@ public class IdentidadeController(IAutenticacaoService autenticacaoService) : Co
 
         var resposta = await _iAutenticacaoService.Registro(usuarioRegistro);
 
-        return View(usuarioRegistro);
+        await RealizarLogin(resposta);
+
+        return RedirectToAction("Index", "Home");
     }
-    
+
     [HttpGet("login")]
     public IActionResult Login()
     {
         return View();
     }
-    
+
     [HttpPost("login")]
     public async Task<IActionResult> Login(UsuarioLogin usuarioLogin)
     {
@@ -37,15 +43,43 @@ public class IdentidadeController(IAutenticacaoService autenticacaoService) : Co
 
         var resposta = await _iAutenticacaoService.Login(usuarioLogin);
 
-        if (false) return View(usuarioLogin);
+        await RealizarLogin(resposta);
 
         return RedirectToAction("Index", "Home");
     }
-    
+
     [HttpGet("sair")]
     public async Task<IActionResult> Logout()
     {
         return RedirectToAction("Index", "Home");
     }
 
+    private async Task RealizarLogin(UsuarioRespostaLogin usuarioRespostaLogin)
+    {
+        var token = ObterTokenFormatado(usuarioRespostaLogin.AccessToken);
+
+        var claims = new List<Claim>
+        {
+            new("JWT", usuarioRespostaLogin.AccessToken)
+        };
+        claims.AddRange(token.Claims);
+
+        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+        var authProperties = new AuthenticationProperties
+        {
+            ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(usuarioRespostaLogin.ExpiresIn),
+            IsPersistent = true
+        };
+
+        await HttpContext.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            new ClaimsPrincipal(claimsIdentity), 
+            authProperties);
+    }
+
+    private static JwtSecurityToken ObterTokenFormatado(string jwtToken)
+    {
+        return new JwtSecurityTokenHandler().ReadToken(jwtToken) as JwtSecurityToken;
+    }
 }
