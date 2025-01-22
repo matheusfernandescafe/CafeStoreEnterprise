@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace CSE.WebApp.MVC.Controllers;
 
-public class IdentidadeController(IAutenticacaoService autenticacaoService) : Controller
+public class IdentidadeController(IAutenticacaoService autenticacaoService) : MainController
 {
     private readonly IAutenticacaoService _iAutenticacaoService = autenticacaoService;
 
@@ -21,9 +21,13 @@ public class IdentidadeController(IAutenticacaoService autenticacaoService) : Co
     [HttpPost("nova-conta")]
     public async Task<IActionResult> Registro(UsuarioRegistro usuarioRegistro)
     {
-        if (!ModelState.IsValid) return View(usuarioRegistro);
+        if (!ModelState.IsValid)
+            return View(usuarioRegistro);
 
         var resposta = await _iAutenticacaoService.Registro(usuarioRegistro);
+
+        if (ResponsePossuiErros(resposta.ResponseResult))
+            return View(usuarioRegistro);
 
         await RealizarLogin(resposta);
 
@@ -42,6 +46,9 @@ public class IdentidadeController(IAutenticacaoService autenticacaoService) : Co
         if (!ModelState.IsValid) return View(usuarioLogin);
 
         var resposta = await _iAutenticacaoService.Login(usuarioLogin);
+
+        if (ResponsePossuiErros(resposta.ResponseResult))
+            return View(usuarioLogin);
 
         await RealizarLogin(resposta);
 
