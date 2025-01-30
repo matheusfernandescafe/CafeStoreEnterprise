@@ -1,4 +1,6 @@
-﻿namespace CSE.WebApp.MVC.Configuration;
+﻿using CSE.WebApp.MVC.Extensions;
+
+namespace CSE.WebApp.MVC.Configuration;
 
 public static class WebAppConfig
 {
@@ -9,15 +11,9 @@ public static class WebAppConfig
 
     public static void UseMvcConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
     {
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseExceptionHandler("/Home/Error");
-            app.UseHsts();
-        }
+        app.UseExceptionHandler("/erro/500");
+        app.UseStatusCodePagesWithRedirects("/erro/{0}");
+        app.UseHsts();
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
@@ -25,6 +21,8 @@ public static class WebAppConfig
         app.UseRouting();
 
         app.UseIdentityConfiguration();
+
+        app.UseMiddleware<ExceptionMiddleware>();
 
         app.UseEndpoints(endpoints =>
         {
