@@ -4,19 +4,23 @@ namespace CSE.WebApp.MVC.Configuration;
 
 public static class IdentityConfig
 {
-    public static void AddIdentityConfiguration(this IServiceCollection services)
+    public static WebApplicationBuilder AddIdentityConfiguration(this WebApplicationBuilder builder)
     {
-        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
                 options.LoginPath = "/login";
                 options.AccessDeniedPath = "/acesso-negado";
             });
+
+        return builder;
     }
 
-    public static void UseIdentityConfiguration(this IApplicationBuilder app)
+    public static WebApplication UseIdentityConfiguration(this WebApplication app)
     {
         app.UseAuthentication();
         app.UseAuthorization();
+
+        return app;
     }   
 }
