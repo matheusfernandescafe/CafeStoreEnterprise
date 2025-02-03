@@ -4,12 +4,29 @@ namespace CSE.WebApp.MVC.Configuration;
 
 public static class WebAppConfig
 {
-    public static void AddMvcConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static WebApplicationBuilder AddMvcConfiguration(this WebApplicationBuilder builder, IConfiguration configuration)
     {
-        services.AddControllersWithViews();
+        builder.Services.AddControllersWithViews();
+
+        builder.Services.Configure<AppSettings>(configuration);
+
+        var environment = builder.Environment;
+
+        builder.Configuration
+            .SetBasePath(environment.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables();
+
+        if (environment.IsDevelopment())
+        {
+            builder.Configuration.AddUserSecrets<Program>();
+        }
+
+        return builder;
     }
 
-    public static void UseMvcConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
+    public static WebApplication UseMvcConfiguration(this WebApplication app, IWebHostEnvironment env)
     {
         app.UseExceptionHandler("/erro/500");
         app.UseStatusCodePagesWithRedirects("/erro/{0}");
@@ -24,11 +41,10 @@ public static class WebAppConfig
 
         app.UseMiddleware<ExceptionMiddleware>();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-        });
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+
+        return app;
     }
 }
