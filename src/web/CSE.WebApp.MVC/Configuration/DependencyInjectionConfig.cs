@@ -5,12 +5,12 @@ namespace CSE.WebApp.MVC.Configuration;
 
 public static class DependencyInjectionConfig
 {
-    public static void RegisterServices(this IServiceCollection services)
+    public static WebApplicationBuilder RegisterServices(this WebApplicationBuilder builder)
     {
-        services.AddHttpClient<IAutenticacaoService, AutenticacaoService>();
+        builder.Services.AddHttpClient<IAutenticacaoService, AutenticacaoService>();
+        builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        builder.Services.AddScoped<IUser, AspNetUser>();
 
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-        services.AddScoped<IUser, AspNetUser>();
+        return builder;
     }
 }
