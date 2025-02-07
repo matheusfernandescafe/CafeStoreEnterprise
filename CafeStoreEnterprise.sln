@@ -34,6 +34,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE.Carrinho.API", "src\services\CSE.Carrinho.API\CSE.Carrinho.API.csproj", "{73DEE1DF-A6C8-4EE5-A046-4CDA18AE0331}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE.Catalogo.API", "src\services\CSE.Catalogo.API\CSE.Catalogo.API.csproj", "{D26BD373-1C8A-4A53-8422-241245963362}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2A4B740E-BE0A-41F2-BB6B-D87B6C277BA7} = {2A4B740E-BE0A-41F2-BB6B-D87B6C277BA7}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE.Cliente.API", "src\services\CSE.Cliente.API\CSE.Cliente.API.csproj", "{5AD32BAD-E5A8-4C61-8907-ABD0E9245DA6}"
 EndProject
@@ -42,6 +45,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE.Pagamento.API", "src\services\CSE.Pagamento.API\CSE.Pagamento.API.csproj", "{074DA499-970D-403A-9B32-7A73F1674A40}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE.Pedido.API", "src\services\CSE.Pedido.API\CSE.Pedido.API.csproj", "{B3FC4EF4-B59B-4E80-BC8D-8C0B38D39E22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0552A619-7D0B-4C17-9670-9B1F05B22609}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
