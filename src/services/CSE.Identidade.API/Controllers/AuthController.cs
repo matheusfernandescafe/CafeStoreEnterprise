@@ -1,4 +1,5 @@
 ﻿using CSE.Identidade.API.Extension;
+using CSE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;

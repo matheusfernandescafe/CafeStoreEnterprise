@@ -11,6 +11,7 @@
 
   <ItemGroup>
 	  <ProjectReference Include="..\..\building blocks\CSE.Core\CSE.Core.csproj" />
+	  <ProjectReference Include="..\..\building blocks\CSE.WebAPI.Core\CSE.WebAPI.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,7 @@
 ﻿using CSE.Identidade.API.Data;
 using CSE.Identidade.API.Extension;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using CSE.WebAPI.Core.Identidade;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace CSE.Identidade.API.Configuration;
 
@@ -16,29 +14,7 @@ public static class IdentityConfig
                 .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        var JwtSettingsSection = builder.Configuration.GetSection("AppSettings");
-        builder.Services.Configure<AppSettings>(JwtSettingsSection);
-
-        var jwtSettings = JwtSettingsSection.Get<AppSettings>();
-        var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
-        
-        builder.Services.AddAuthentication(options =>
-        {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(options =>
-        {
-            options.RequireHttpsMetadata = true;
-            options.SaveToken = true;
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidAudience = jwtSettings.ValidoEm,
-                ValidIssuer = jwtSettings.Emissor
-            };
-        });
+        builder.AddJwtConfiguration();
 
         return builder;
     }

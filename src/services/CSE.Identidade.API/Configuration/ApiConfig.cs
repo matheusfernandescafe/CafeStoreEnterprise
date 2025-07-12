@@ -1,4 +1,6 @@
-﻿namespace CSE.Identidade.API.Configuration;
+﻿using CSE.WebAPI.Core.Identidade;
+
+namespace CSE.Identidade.API.Configuration;
 
 public static class ApiConfig
 {
@@ -29,8 +31,7 @@ public static class ApiConfig
     public static WebApplication UseApiConfig(this WebApplication app)
     {
         app.UseHttpsRedirection();
-        app.UseAuthentication();
-        app.UseAuthorization();
+        app.UseAuthConfiguration();
         app.MapControllers();
 
         return app;
