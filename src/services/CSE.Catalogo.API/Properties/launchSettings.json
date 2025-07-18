@@ -1,31 +1,5 @@
 {
   "profiles": {
-    "IIS - Dev": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "sqlDebugging": true,
-      "nativeDebugging": true
-    },
-    "IIS - Staging": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Staging"
-      }
-    },
-    "IIS - Prod": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
-      }
-    },
     "SelfHosting": {
       "commandName": "Project",
       "launchBrowser": true,
@@ -33,7 +7,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:5101;http://localhost:5100"
+      "applicationUrl": "https://localhost:15201;http://localhost:15200"
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
