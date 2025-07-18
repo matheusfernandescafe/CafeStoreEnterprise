@@ -14,7 +14,7 @@ public class AutenticacaoService(HttpClient httpClient,
     {
         var loginContent = ObterConteudo(usuarioLogin);
 
-        var response = await _httpClient.PostAsync($"{_settings.AutenticacaoUrl}/api/identidade/autenticar", loginContent);
+        var response = await _httpClient.PostAsync($"{_settings.AutenticacaoUrl}identidade/autenticar", loginContent);
 
         if (!TratarErrosResponse(response))
         {
@@ -31,7 +31,7 @@ public class AutenticacaoService(HttpClient httpClient,
     {
         var registroContent = ObterConteudo(usuarioRegistro);
 
-        var response = await _httpClient.PostAsync($"{_settings.AutenticacaoUrl}/api/identidade/nova-conta", registroContent);
+        var response = await _httpClient.PostAsync($"{_settings.AutenticacaoUrl}identidade/nova-conta", registroContent);
 
         if (!TratarErrosResponse(response))
         {
