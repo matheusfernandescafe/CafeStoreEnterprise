@@ -8,6 +8,7 @@ public static class DependencyInjectionConfig
     public static WebApplicationBuilder RegisterServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddHttpClient<IAutenticacaoService, AutenticacaoService>();
+        builder.Services.AddHttpClient<ICatalogoService, CatalogoService>();
         builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         builder.Services.AddScoped<IUser, AspNetUser>();
 
