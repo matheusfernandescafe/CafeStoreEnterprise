@@ -15,6 +15,18 @@ public class HomeController : MainController
         return View();
     }
 
+    [Route("sistema-indisponivel")]
+    public IActionResult SistemaIndisponivel()
+    {
+        var modelErro = new ErrorViewModel
+        {
+            Mensagem = "Nosso sistema está temporariamente indisponível. Isto pode ocorrer em momentos de sobrecarga de usuários.",
+            Titulo = "Sistema Indisponível",
+            ErroCode = 503
+        };
+        return View("Error", modelErro);
+    }
+
     [Route("erro/{id:length(3,3)}")]
     public IActionResult Error(int id)
     {
