@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CSE.WebApp.MVC.Controllers;
 
-public class CatalogoController(ICatalogoServiceRefit catalogoService) : MainController
+public class CatalogoController(ICatalogoService catalogoService) : MainController
 {
-    private readonly ICatalogoServiceRefit _catalogoService = catalogoService;
+    private readonly ICatalogoService _catalogoService = catalogoService;
 
     [HttpGet("vitrine")]
     [Route("")]
