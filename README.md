@@ -6,7 +6,7 @@ Este projeto utiliza uma arquitetura baseada em microserviços para construir um
 
 O projeto está sendo documentado por partes para detalhar a arquitetura interna de cada camada e microserviço. Abaixo estão os links para essas documentações:
 
-- [`Clientes`](./documentation/README-Clientes.md): Estrutura detalhada da API de Clientes (`CSE.Cliente.API`).
+- [`Clientes`](./src/documentation/README-Clientes.md): Estrutura detalhada da API de Clientes (`CSE.Cliente.API`).
 
 > Em breve: Documentações para as APIs de Catálogo, Carrinho, Pedido, Pagamento, Identidade e WebApp.
 
