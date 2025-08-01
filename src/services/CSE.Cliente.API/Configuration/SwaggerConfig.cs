@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace CSE.Cliente.API.Configuration;
+namespace CSE.Clientes.API.Configuration;
 
 public static class SwaggerConfig
 {

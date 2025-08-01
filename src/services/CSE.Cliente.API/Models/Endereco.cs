@@ -1,6 +1,6 @@
 ﻿using CSE.Core.DomainObjects;
 
-namespace CSE.Cliente.API.Models;
+namespace CSE.Clientes.API.Models;
 
 public class Endereco : Entity
 {

@@ -1,6 +1,6 @@
 ﻿using CSE.WebAPI.Core.Identidade;
 
-namespace CSE.Cliente.API.Configuration;
+namespace CSE.Clientes.API.Configuration;
 
 public static class ApiConfig
 {

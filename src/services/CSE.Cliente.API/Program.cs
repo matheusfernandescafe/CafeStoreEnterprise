@@ -1,4 +1,4 @@
-using CSE.Cliente.API.Configuration;
+using CSE.Clientes.API.Configuration;
 using CSE.WebAPI.Core.Identidade;
 
 var builder = WebApplication.CreateBuilder(args);

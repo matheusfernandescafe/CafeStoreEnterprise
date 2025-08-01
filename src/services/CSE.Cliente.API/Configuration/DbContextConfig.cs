@@ -1,7 +1,7 @@
-﻿using CSE.Cliente.API.Data;
+﻿using CSE.Clientes.API.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace CSE.Cliente.API.Configuration;
+namespace CSE.Clientes.API.Configuration;
 
 public static class DbContextConfig
 {
